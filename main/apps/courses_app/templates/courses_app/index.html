@@ -1,0 +1,48 @@
+<html>
+<h1>Success! Welcome, {{current_user.first_name}} {{current_user.last_name}}</h1>
+<h1>Add a new course</h1>
+<form action="/courses/{{current_user.id}}/add" method='post'>
+    {% csrf_token %}
+    <div>
+        <label for="name">
+            <b>Name</b>
+            </br>
+        </label>
+        <input type="text" placeholder="Course Name" name='name' required>
+        </br>
+        <label for="description">
+            </br>
+            <b>Description</b>
+            </br>
+        </label>
+        <input type="text" placeholder="Description" name="description" required>
+        </br>
+        </br>
+        <button type="submit">Add</button>
+        </br>
+    </div>
+</form>
+<table>
+    <tr>
+        <th>Course Name</th>
+        <th>Description</th>
+        <th>Date Added</th>
+        <th>Created by</th>
+        <th>Actions</th>
+    </tr>
+    <tr>
+{% for course in show_course %}
+<td>{{course.name}}</td>
+<td>{{course.description}}</td>
+<td>{{course.created_at}}</td>
+<td>{{course.creator.first_name}}</td>
+<td><a href = '/courses/{{course.id}}/delete'>Delete</a></td>
+<td><a href = '/courses/{{course.id}}/join'>Join</a></td>
+<td><a href = '/courses/{{course.id}}/show'>Show</a></td>
+
+{% endfor %}
+</tr>
+</table>
+<a href='/logout'>Logout</a>
+
+</html>

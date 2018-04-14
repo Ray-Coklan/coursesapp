@@ -1,0 +1,8 @@
+{{class.name}}
+{% for student in students %}
+{{student.first_name}}
+{% endfor %}
+<form action='/courses/{{class.id}}/edit' , method='POST'>
+    {% csrf_token %}
+    <button type='submit'>Edit</button>
+</form>

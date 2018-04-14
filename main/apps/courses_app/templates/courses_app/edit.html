@@ -1,0 +1,12 @@
+<h1>Edit course</h1>
+<form action="/courses/{{course.id}}/process_edit" method="post">
+    {% csrf_token %} 
+    Name:
+    <br>
+    <input type="text" name="name">
+    <br> Description
+    <br>
+    <input type="text" name="description">
+    <br>
+    <input type="submit" name="update" value="update">
+</form>
